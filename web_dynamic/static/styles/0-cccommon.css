@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font-family: Arial;
+
+}
+
+/* Add spacing to the table header cells with the 'tablespacing' class */
+body .tablespacing th {
+    padding: 10px; /* Adjust the padding as needed */
+    text-align: center; /* Align text to the center if desired */
+    /* Add any other styling properties you need */
+ 
+}
+
+/* Example styling for the entire table */
+/* body .tablespacing {
+    border-collapse: collapse; 
+    width: 10%; 
+} */
+
+body .tablespacing, .tablespacing th, .tablespacing td {
+    border: 1px solid #dddddd; /* Add borders to cells */
+}
