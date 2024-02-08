@@ -2,7 +2,7 @@
 from models import storage
 from models.criteria import Criteria
 from models.alternative import Alternative
-from models.alternativevalue import AlternativeValue
+# from models.alternativevalue import AlternativeValue
 from models.result import Result
 import copy
 from flask import Flask, render_template, request, jsonify
@@ -77,14 +77,15 @@ def close_db(error):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        # session = Session()
         data = request.get_json()
         table_data = data.get('tableData')
-        table_data = [[int(i) for i in sublist] for sublist in table_data]
+        table_data = [[float(i) for i in sublist] for sublist in table_data]
         table_data1 = data.get('tableData1')
         sol = mcdm(table_data, table_data1)
         best_alternative = sol[0]
         best_performance_score = sol[1]
+        best_alternative = [str(i) for i in best_alternative]
+        table_data = [[str(i) for i in sublist] for sublist in table_data]
         criteriaName = []
         criterionType = []
         for i in range(len(table_data1)):
@@ -93,40 +94,24 @@ def index():
             else:
                 criterionType.append(table_data1[i])
 
-        # Iterate through the lists and insert each row individually
-        for name, criterion_type in zip(criteriaName, criterionType):
-            new_criteria = Criteria(criteriaName=name, criteriaType=criterion_type)
-            # session.add(new_criteria)
-            storage.new(new_criteria)
+        new_criteria = Criteria(criteriaName=json.dumps(criteriaName), criteriaType=json.dumps(criterionType))
+        storage.new(new_criteria)
 
        
         # Save alternative and values
-        alternative_values = list(zip(*table_data))
-        alternative = Alternative(criteria_name=json.dumps(criteriaName))
-        # session.add(alternative)
-        storage.new(alternative)
+        criteriaName_json = json.dumps(criteriaName)
+        best_alternative_json = json.dumps(best_alternative)
 
-        for name, criteriaval in zip(criteriaName, best_alternative):
-            new_result = Result(criteria_name = name, best_alternative=criteriaval, performance_score=best_performance_score, alternative=alternative)
-            # session.add(new_result)
-            storage.new(new_result)
+        # Create a new Result instance
+        new_result = Result(criteria_name=criteriaName_json, best_alternative=best_alternative_json, performance_score=best_performance_score)
+        storage.new(new_result)
 
-
-
-        for name, values in zip(criteriaName, alternative_values):
-            for value in values:
-                new_alternative_value = AlternativeValue(
-                    alternative=alternative,
-                    criteria_name=name,
-                    alternative_value=value
-                )
-                # session.add(new_alternative_value)
-                storage.new(new_alternative_value)
-
-        # session.commit()
+        new_alternative = Alternative(
+            criteria_values=json.dumps(table_data),
+            criteria_name=json.dumps(criteriaName),
+        )
+        storage.new(new_alternative)
         storage.save()
-
-        #session.close()
         return jsonify({
             'best_alternative': best_alternative,
             'best_performance_score': best_performance_score,
@@ -144,9 +129,6 @@ def mcdm(table_data,table_data1):
             criteriaName.append(table_data1[i])
         else:
             criterionType.append(table_data1[i])
-    #     print('criteriaName', criteriaName)
-    #     print('criteriaType', criterionType)
-    #     print('criteriaType', len(criterionType))
     criterionType_copy = copy.copy(criterionType)
     #  creating a dictionary from the criterianame and criteria type
     for key in criteriaName:
@@ -171,7 +153,6 @@ def mcdm(table_data,table_data1):
             maxormin_per_score_criterias.append(max(s))
         else:
             maxormin_per_score_criterias.append(min(s))
-    # print('maxormin_per_score_criterias', maxormin_per_score_criterias)
     for m in range(0, len(table_data[0])):
         key_value_pairs = list(criteriaDic.items())
         

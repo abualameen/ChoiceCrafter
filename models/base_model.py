@@ -7,7 +7,7 @@ from datetime import datetime
 import models
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, String, DateTime,Integer
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
 
@@ -21,6 +21,7 @@ Base = declarative_base()
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
     created_at = Column(DateTime, default=datetime.utcnow)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
         if kwargs:
@@ -34,10 +35,11 @@ class BaseModel:
         else:
             self.created_at = datetime.utcnow()
             
+            
 
     def __str__(self):
         """String representation of the BaseModel class"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, str(self.id),
                                          self.__dict__)
 
     def save(self):

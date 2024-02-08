@@ -5,7 +5,7 @@ Contains the class DBStorage
 import models
 from models.criteria import Criteria
 from models.alternative import Alternative
-from models.alternativevalue import AlternativeValue
+#from models.alternativevalue import AlternativeValue
 from models.base_model import BaseModel, Base
 from models.result import Result
 import sqlalchemy
@@ -16,7 +16,7 @@ from os import getenv
 
 
 
-classes = {"Criteria": Criteria, "Alternative": Alternative, "Result": Result, "AlternativeValue": AlternativeValue}
+classes = {"Criteria": Criteria, "Alternative": Alternative, "Result": Result}
 
 class DBStorage:
     __engine = None
@@ -39,7 +39,7 @@ class DBStorage:
             if cls is None or cls is classes[clss] or cls is clss:
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
+                    key = obj.__class__.__name__ + '.' + str(obj.id)
                     new_dict[key] = obj
         return (new_dict)
 

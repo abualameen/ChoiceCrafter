@@ -10,9 +10,9 @@ from sqlalchemy.orm import relationship
 
 class Criteria(BaseModel, Base):
     __tablename__ = 'criteria'
-    id = Column(Integer, primary_key=True)
-    criteriaName = Column(String(100), nullable=False)
-    criteriaType = Column(String(20), nullable=False)
+    # id = Column(Integer, primary_key=True)
+    criteriaName = Column(String(5000), nullable=False)
+    criteriaType = Column(String(5000), nullable=False)
 
     def __init__(self, *args, **kwargs):
         """initializes criteria"""
