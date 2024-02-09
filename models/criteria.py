@@ -1,16 +1,15 @@
 #!/usr/bin/python
-
+""" this model contains the criteria class """
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Integer, String, Float, ForeignKey
+from sqlalchemy import create_engine, Column
 from sqlalchemy.orm import relationship
 
 
-# Base = declarative_base()
-
 class Criteria(BaseModel, Base):
+    """ this is the criteria class """
     __tablename__ = 'criteria'
-    # id = Column(Integer, primary_key=True)
     criteriaName = Column(String(5000), nullable=False)
     criteriaType = Column(String(5000), nullable=False)
 

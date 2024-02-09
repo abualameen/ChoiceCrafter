@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from models import storage
 from api.v1.views import app_views
 from os import environ
@@ -17,6 +18,7 @@ def close_db(error):
     """ this closes the db storage"""
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found(error):
     """ when there is a 404 error"""
@@ -31,4 +33,4 @@ if __name__ == "__main__":
         host = '0.0.0.0'
     if not port:
         port = '5005'
-    app.run(host=host, port=port)
+    app.run(host=host, port=port, debug=True)

@@ -5,7 +5,6 @@ Contains the class DBStorage
 import models
 from models.criteria import Criteria
 from models.alternative import Alternative
-#from models.alternativevalue import AlternativeValue
 from models.base_model import BaseModel, Base
 from models.result import Result
 import sqlalchemy
@@ -14,23 +13,23 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from os import getenv
 
 
-
-
 classes = {"Criteria": Criteria, "Alternative": Alternative, "Result": Result}
+
 
 class DBStorage:
     __engine = None
     __session = None
+
     def __init__(self):
         CC_MYSQL_USER = getenv('CC_MYSQL_USER')
         CC_MYSQL_PWD = getenv('CC_MYSQL_PWD')
         CC_MYSQL_HOST = getenv('CC_MYSQL_HOST')
         CC_MYSQL_DB = getenv('CC_MYSQL_DB')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(CC_MYSQL_USER,CC_MYSQL_PWD,CC_MYSQL_HOST,CC_MYSQL_DB))
-        #DATABASE_URI = 'mysql+mysqldb://{}:{}@{}/{}'.format(CC_MYSQL_USER,CC_MYSQL_PWD,CC_MYSQL_HOST,CC_MYSQL_DB)
-        # engine = create_engine(DATABASE_URI)
-        # Base = declarative_base()
-
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+                                      format(CC_MYSQL_USER,
+                                             CC_MYSQL_PWD,
+                                             CC_MYSQL_HOST,
+                                             CC_MYSQL_DB))
 
     def all(self, cls=None):
         """query on the current database session"""
@@ -72,14 +71,13 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
+        id = int(id)
         if cls not in classes.values():
             return None
-
         all_cls = models.storage.all(cls)
         for value in all_cls.values():
             if (value.id == id):
                 return value
-
         return None
 
     def count(self, cls=None):
@@ -96,4 +94,3 @@ class DBStorage:
             count = len(models.storage.all(cls).values())
 
         return count
-
