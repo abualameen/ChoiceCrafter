@@ -75,6 +75,16 @@ def index():
         })
     return render_template('index.html')
 
+@app.route('/about_us')
+def about_us():
+    """ the about us route """
+    return render_template('about_us.html')
+
+@app.route('/contact_us')
+def contact_us():
+    """ the contact us route """
+    return render_template('contact_us.html')
+
 
 def mcdm(table_data, table_data1):
     """ MCDM ALGORITHM """
@@ -99,6 +109,7 @@ def mcdm(table_data, table_data1):
 
     mm_per_sco_cri = []
     norm_deci_mat = copy.deepcopy(table_data)
+    
     # sorting based on column i.e criteria value column wise
     for i in range(0, len(table_data[0])):
         s = []
@@ -117,7 +128,7 @@ def mcdm(table_data, table_data1):
             else:
                 norm_deci_mat[n][m] = mm_per_sco_cri[m]/table_data[n][m]
     # weightage normalized decision matrix computation
-    weig_norm_dec_mat = copy.copy(norm_deci_mat)
+    weig_norm_dec_mat = copy.deepcopy(norm_deci_mat)
     if 100 % len(criteriaName) == 0:
         weightage = 100/len(criteriaName)
         weightage_deci = weightage/100

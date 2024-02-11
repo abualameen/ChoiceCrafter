@@ -4,23 +4,69 @@ body {
     color: #484848;
     font-size: 14px;
     font-family: Arial;
+}
+
+.tablespacing th {
+    padding: 10px; 
+    text-align: center; 
+}
+
+.tablespacing, .tablespacing th, .tablespacing td {
+    border: 1px solid #dddddd; 
+}
+
+#criteriaGen {
+    padding: 10px;
+    margin: 25px;
+    background-color: #484848;
+    width: 100%;
+    height: 25px;
+}
+
+#results-container {
+    background-color: #25d153;
+    margin: 25px;
+    width: 100%;
+    font-size: 15px;   
+}
+
+#table-container {
+    border: 1px solid #534f4f;
+    width: 100%;
+    padding: 10px; 
+    margin: 20px;
+}
+
+#tableGen {
+    margin-left: 30px;
+}
+
+.talk_us {
+    margin-left: 40px;
+    color: chocolate;
 
 }
 
-/* Add spacing to the table header cells with the 'tablespacing' class */
-body .tablespacing th {
-    padding: 10px; /* Adjust the padding as needed */
-    text-align: center; /* Align text to the center if desired */
-    /* Add any other styling properties you need */
- 
+
+#label_id {
+    position: absolute;
+    top: 250px;
 }
 
-/* Example styling for the entire table */
-/* body .tablespacing {
-    border-collapse: collapse; 
-    width: 10%; 
-} */
+#heading {
+    margin-left: 30px;
+}
 
-body .tablespacing, .tablespacing th, .tablespacing td {
-    border: 1px solid #dddddd; /* Add borders to cells */
+
+
+#genDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#explanation {
+    border: 1px solid #534f4f;
+    width: 42%;
+    margin-left: 60px;
+    padding: 10px;
 }

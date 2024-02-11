@@ -1,12 +1,46 @@
 header {
     background: white;
     height: 200px;
-    width: 100%;
+    max-width: 100%;
     border-bottom: 1px solid #CCCCCC;
+    
 }
 
 header .logo {
-    background: url("../images/logo.png") no-repeat;
+    background: url("../images/choice_crafter16.png") no-repeat;
     left: 20px;
     height: 100%;
+    width: 100%;
+    background-size: contain;
+}
+
+header .link_us {
+    color: blue;
+    position: absolute;
+    right: 30px;
+    margin: 10px;
+    background-size: contain;
+}
+
+header .social {
+    position: absolute;
+    right: 30px;
+    bottom: 70%;
+    background-size: contain;
+}
+
+
+header #social_right {
+    right: 120px;
+}
+
+header #contact_us {
+    right: 100px;
+}
+header #home {
+    right: 30px
+}
+
+header #home1 {
+    right: 120px
 }

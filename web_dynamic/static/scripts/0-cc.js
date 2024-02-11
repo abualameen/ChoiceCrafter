@@ -13,7 +13,8 @@ function generateTable() {
 
     table += '<tr>';
     for (let k = 0; k < cols; k++) {
-        table += `<th><select name="criteriaTypes[]" required id="type_${k}">`;
+        table += `<th><select name="criteriaTypes" required id="type_${k}">`;
+        table += '<option value="" disabled selected hidden>Criteria Type</option>';
         table += '<option value="NonBeneficial">Non-Beneficial</option>';
         table += '<option value="Beneficial">Beneficial</option>';
         table += '</select></th>';
@@ -61,20 +62,14 @@ function submitFormData() {
         tableData1.push(criteriaName);
         tableData1.push(criteriaType);
     }
-    // const table = document.getElementById('tableclear');
-    // table.addEventListener('submit', function clearTable(event) {
-    // event.preventDefault();
-    // table.reset();
-    // });
-    // Send data to server using jQuery AJAX
+
     $.ajax({
         type: 'POST',
         url: '/',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify({ tableData, tableData1 }),
         success: function (data) {
-            // Update the results container with the processed data
-            $('#results-container').html('The best choice of your alternatives is: ' + data.best_alternative + ' ranks 1st with a performance score of ' + data.best_performance_score);
+            $('#results-container').html('The best choice of your alternatives is: ' + data.best_alternative + ' ranks 1st with a performance score of ' + data.best_perf_score);
         },
         
         error: function (error) {
