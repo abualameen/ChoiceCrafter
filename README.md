@@ -14,6 +14,7 @@ Traditionally, I performed these computations using Microsoft Excel, which was t
 - **Performance Score Calculation**: Calculate the performance score for each alternative based on the weightage normalized decision matrix.
 - **Interactive User Interface**: Intuitive and user-friendly interface for inputting data and viewing results.
 - **Dynamic Table Generation**: Generate decision matrices dynamically based on user input.
+- **API** A API is also a good feature of Choice Crafter that help user interact with the application
 
 ## How it Works
 
@@ -40,6 +41,29 @@ To use Choice Crafter, follow these steps:
 - **Backend**: Python, Flask
 - **Database**: MySQL (for storing user data)
 - **Deployment**: Fabric, Git pages
+
+## API
+In addition to the user interface, Choice Crafter features a robust API that interacts seamlessly with the app's database. This API serves as the backbone of the application, enabling efficient retrieval of data from the result table, criteria table, and alternative table.
+
+The API offers versatile functionality, providing two GET methods or endpoints for retrieving data from the database. Users can utilize these methods to access all data within the tables or retrieve specific data by ID, depending on their requirements.
+
+By incorporating this API into Choice Crafter, users gain access to a powerful toolset for managing and analyzing their decision-making processes. Whether retrieving comprehensive datasets for in-depth analysis or accessing specific records for targeted insights, the API enhances the versatility and usability of the application, empowering users to make informed decisions with ease.
+
+Choice Crafter's API offers the following endpoints for seamless interaction with the application's database:
+
+1. **Criteria Endpoint**:
+   - `/api/v1/criteria/`: This endpoint allows users to retrieve all criteria data from the database.
+   - `/api/v1/criteria/<criteria_id>`: Users can access specific criteria data by providing the ID of the desired criteria.
+
+2. **Alternative Endpoint**:
+   - `/api/v1/alternative/`: Users can retrieve all alternative data from the database using this endpoint.
+   - `/api/v1/alternative/<alternative_id>`: Specific alternative data can be retrieved by providing the ID of the desired alternative.
+
+3. **Result Endpoint**:
+   - `/api/v1/result/`: This endpoint enables users to retrieve all result data stored in the database.
+   - `/api/v1/result/<result_id>`: Users can access specific result data by providing the ID of the desired result.
+
+These endpoints facilitate efficient data retrieval, allowing users to access comprehensive datasets or specific records as needed. Whether querying criteria, alternatives, or results, the API endpoints provide a streamlined approach to data access, enhancing the functionality and usability of Choice Crafter.
 
 ## Contributing
 
