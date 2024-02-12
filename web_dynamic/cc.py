@@ -75,12 +75,12 @@ def index():
         })
     return render_template('index.html')
 
-@app.route('/about_us', strict_slashes=False)
+@app.route('/ChoiceCrafter/about_us', strict_slashes=False)
 def about_us():
     """ the about us route """
     return render_template('about_us.html')
 
-@app.route('/contact_us', strict_slashes=False)
+@app.route('/ChoiceCrafter/contact_us', strict_slashes=False)
 def contact_us():
     """ the contact us route """
     return render_template('contact_us.html')
