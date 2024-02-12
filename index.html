@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="web_dynamic/static/styles/0-ccheader.css">
+    <link rel="stylesheet" type="text/css" href="web_dynamic/static/styles/0-ccfooter.css">
+    <link rel="stylesheet" type="text/css" href="web_dynamic/static/styles/0-cccommon.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles/responsivedesign.css"> -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="web_dynamic/static/scripts/0-cc.js"></script>
+    <title>Choice Craftert</title>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a class="link_us" href="/about_us">about us</a>
+            <a class="link_us" id="contact_us" href="/contact_us">contact us</a>
+            <a class="social" href="https://www.linkedin.com/in/yakubu-umar-abdullahi-6a500ab7/" target="_blank">
+                <img src="web_dynamic/static/images/choice_crafter10.png" alt="LinkedIn" width="30" height="30">
+            </a>
+            <a class="social" id="social_right" href="https://github.com/abualameen/ChoiceCrafter" target="_blank">
+                <img src="web_dynamic/static/images/choice_crafter11.png" alt="Github" width="100%" height="30">
+            </a>
+        </div>
+   
+        
+    </header>
+    <div id="genDiv">
+        <h2 id="heading">MCDM Calculator</h2>
+        <div style="display: flex;">
+            <div>
+                <form id="criteriaForm" method="POST"></form>
+                    <div id="criteriaGen">
+                        <label id="label_id" for="rows">Number of Alternative</label>  
+                        <input type="number" id="rows" name="rows" value="3">  
+                        <label id="label_id" for="cols">Number of Criteria</label>  
+                        <input type="number" id="cols" name="cols" value="3">  
+                        <button id="tableGen" onclick="generateTable()">Generate Decision Matrix</button> 
+                        
+                    </div>  
+                    <div id="table-container"></div>
+                  
+                    <div id="results-container"></div> 
+                    <button id="tableGen" type="button" onclick="submitFormData()">Submit</button>
+                </form>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Tm-tRH8y-Mk" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div id="explanation">
+                <h2>
+                    Choice Crafter Use
+                </h2>
+                <p>
+                   <p>
+                    The online Choice Crafter app is a decision making tool that can be used by engineers,
+                    researchers and students alike, it is based on the basic multi-criteria decision making(MCDM) concept.
+                   </p>
+                   <p>
+                    If you are in a situation where you have to decide on one out of many set of optimal solutions or alternative,
+                    then this app is for you, for instance an engineer optimizing the wing of an 
+                    aircraft or researcher working on optimizating machining operation which are probably two objective problem and 
+                    being solve with maybe multi objective optimization methods like NSGAII, would result in a set of optimal solutions
+                    on the pareto front, or better still, you wanting to decide on the best cell phone to purchase from a set of phones,
+                    then you are on the right web app, because with your criteria, performance values and type of criteria Choice Crafter
+                    is about to process your decison matrix and come up with the base alternative based on the MCDM concept.
+                   </p>
+                </p>
+                <h3>The MCDM concept</h3>
+                <P>
+                    When faced with set of optimal solution, in MCDM you resolve the solutions into a decision matrix, as show in the 
+                    the example below
+                </P>
+                <h3>decision matrix</h3>
+                <table>
+                        <thead>
+                            <tr>
+                                <th>speed</th>
+                                <th>feed</th>
+                                <th>deptofcut</th>
+                                <th>noseradius</th>
+                            </tr>
+                            <tr>
+                                <th>beneficial</th>
+                                <th>non-beneficial</th>
+                                <th>beneficial</th>
+                                <th>non-beneficial</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>1200</td>
+                                <td>0.8</td>
+                                <td>1.2</td>
+                                <td>0.2</td>
+                            </tr>
+    
+                            <tr>
+                                <td>1250</td>
+                                <td>0.5</td>
+                                <td>1.3</td>
+                                <td>0.1</td>
+                            </tr>
+    
+                            <tr>
+                                <td>1350</td>
+                                <td>0.6</td>
+                                <td>1.4</td>
+                                <td>0.9</td>
+                            </tr>
+                        </tbody>
+                    
+                </table>
+                <h3>Normalized decision matrix</h3>
+                <p>
+                    The decison matrix is then normalized based on the type of criteria, that is: beneficial and non-beneficial Criteria
+                    <ul>
+                        <li>Benficial criteria is one whose higher value is desire</li>
+                        <li>Non beneficial criteria is one whose lower value is desire, for instance "cost"</li>
+                    </ul>
+                if a criteria is beneficial, it normalized value would be computed as the performance value of a particular alternative
+                divide by the maximum performance value of a particular criteria in it column, else if it a non non-beneficial criteria
+                the minimum performance value of a particular criteria in it column is divided by the each performance value in that 
+                criteria column.
+                </p>
+                <ul>
+                    <li>beneficial = Xij/max(Xij)</li>
+                </ul>
+                <ul>
+                    <li>non-beneficial = min(Xij)/Xij </li>
+                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>speed</th>
+                            <th>feed</th>
+                            <th>deptofcut</th>
+                            <th>noseradius</th>
+                        </tr>
+                        <tr>
+                            <th>beneficial</th>
+                            <th>non-beneficial</th>
+                            <th>beneficial</th>
+                            <th>non-beneficial</th>
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0.8889</td>
+                            <td>0.625</td>
+                            <td>0.8571</td>
+                            <td>0.5</td>
+                        </tr>
+    
+                        <tr>
+                            <td>0.9259</td>
+                            <td>1.0</td>
+                            <td>0.9286</td>
+                            <td>1.0</td>
+                        </tr>
+    
+                        <tr>
+                            <td>1.0</td>
+                            <td>0.8333</td>
+                            <td>1.0</td>
+                            <td>0.1111</td>
+                        </tr>
+                    </tbody>
+                
+                </table>
+                <h3>Weightage normalized decision matrix</h3>
+                After the generation or computation of the normalized decision matrix, the weightage normalized decision matrix
+                is computed, in Choice Crafter app the equal weightage is assummed for all criteria, so if the numbers of criteria 
+                is not even, then the logic to handle such situation is handled, therefore in this example the number of criteria
+                is even (4), so our assigned criteria weightage value would be 25% or 0.25 as the sum of weight must always sum up
+                100%, so for instance applying the weightage to the speed criteria column we have:
+                0.8889 * 0.25 = 0.2222, 0.9259 * 0.25 = 0.2315, 1.0 * 0.25 = 0.2500, this is done for the rest of the criteria to
+                obtain the weightage normalized decision matrix.
+                <h3>performance Score</h3>
+                the performance score for each alternative is computed using the weightage normalized matrix, where each alternative
+                this the performance value row wise is summed up to obtain the performance score for each alternative, for instance
+                the second alternative performance score is computed as follows:
+                0.2315 + 0.2500 + 0.2310 + 0.2500 = 0.9636, the performance score for the first and the third alternative are 0.7178 and 0.7361
+                ,therefore the alternative with the highest performance score is returned as the best alternative or choice, in this example
+                the highest is 0.9636 and it is of the second alternative [1250, 0.5, 1.3, 0.1]
+                <table>
+                    <thead>
+                        <tr>
+                            <th>speed</th>
+                            <th>feed</th>
+                            <th>deptofcut</th>
+                            <th>noseradius</th>
+                        </tr>
+                        <tr>
+                            <th>beneficial</th>
+                            <th>non-beneficial</th>
+                            <th>beneficial</th>
+                            <th>non-beneficial</th>
+                            <th>performance score</th>
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0.2222</td>
+                            <td>0.1563</td>
+                            <td>0.2143</td>
+                            <td>0.1250</td>
+                            <td>0.7178</td>
+                        </tr>
+    
+                        <tr>
+                            <td>0.2315</td>
+                            <td>0.2500</td>
+                            <td>0.2321</td>
+                            <td>0.2500</td>
+                            <td>0.9636</td>
+                        </tr>
+    
+                        <tr>
+                            <td>0.2500</td>
+                            <td>0.2083</td>
+                            <td>0.2500</td>
+                            <td>0.0278</td>
+                            <td>0.7361</td>
+                        </tr>
+
+        
+                    
+                    </tbody>
+                
+                </table>
+                <section>
+                    <div>
+
+                    </div>
+                </section>
+                    <div>
+                        <h3>
+                            Features
+                        </h3>
+                        <ul>
+                            <li>
+                                The Choice Crafter: MCDM app is free, so users a able to use it any time by simply accessing it online
+                            </li>
+                            <li>
+                                The Choice Crafter is able to accomodate large number of criteria and alternatives
+                            </li>
+                            <li>
+                                The decision matrix in Choice Crafter is generated dyanmically based on user specification 
+                            </li>
+                            <li>
+                                Criteria weight is assigned equally
+                            </li>
+                            <li>
+                                An API is implemented for the Choice Criteria app that helps retrieve data from the database,usind different end points
+                            </li>
+                        
+                        </ul>
+                    </div>
+
+                <section>
+                    <div>
+                        <h3>
+                            Questions and Answer
+                        </h3>
+                        <ul>
+                            <li>Question: how can i reset the criteria table</li>
+                            <li>Answer: You can reset the criteria table by either clicking on the generate decision table bottom or by refereshing the page</li>
+                            <p>
+                                <li>Question: how is weight assigned</li>
+                                <li>Answer:  In Choice Crafter equal weight are assigned to each criteria </li>
+                            </p>
+                            
+                        </ul>
+                        
+                    </div>
+                </section>
+            </div>
+        </div>
+
+       
+      
+        
+    </div>
+    
+  
+
+    
+
+
+        
+    <footer>
+        <p>powered by yaqscotech</p>
+    </footer>
+
+</body>
+</html>
+
