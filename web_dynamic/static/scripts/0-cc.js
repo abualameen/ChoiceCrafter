@@ -65,7 +65,7 @@ function submitFormData() {
 
     $.ajax({
         type: 'POST',
-        url: '/',
+        url: '/ChoiceCrafter',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify({ tableData, tableData1 }),
         success: function (data) {
