@@ -26,7 +26,7 @@ def close_db(error):
     storage.close()
 
 
-@app.route('/', methods=['GET', 'POST'], strict_slashes=False)
+@app.route('/ChoiceCrafter', methods=['GET', 'POST'], strict_slashes=False)
 def index():
     """ this is a index function for the index route """
     if request.method == "POST":
