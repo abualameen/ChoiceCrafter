@@ -1,4 +1,3 @@
-
 ![choice crater blog post](https://github.com/abualameen/ChoiceCrafter/assets/75878845/7c3ece16-4016-4406-b12c-9c8616b9fa84)
 
 # Choice Crafter
