@@ -72,6 +72,10 @@ These endpoints facilitate efficient data retrieval, allowing users to access co
 
 Contributions to Choice Crafter are welcome! If you have any ideas for improvements, new features, or bug fixes, feel free to open an issue or submit a pull request.
 
+## Flow Chart
+
+![Choice Crafter flow chart](https://github.com/abualameen/ChoiceCrafter/assets/75878845/ef89830c-a1f6-40fa-8376-25debf688cf0)
+
 ## License
 
 Choice Crafter is licensed under the [MIT License](LICENSE).
