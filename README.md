@@ -1,3 +1,5 @@
+![Choice Crafter Banner](https://drive.google.com/file/d/1zUeqpv0McVr_jpqtK47BHdkwHkSvPfLz/view?usp=drive_link)
+
 # Choice Crafter
 
 Choice Crafter is an online decision-making tool designed to assist engineers, researchers, and students in making optimal choices based on multi-criteria decision-making (MCDM) principles. It provides a simple yet powerful platform for evaluating and selecting the best alternative from a set of options, considering various criteria, their associated weight and performance values.
